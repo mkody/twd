@@ -1,24 +1,24 @@
 (function() {
   var gui = require('nw.gui');
   var menu = new gui.Menu;
-  var iframe = document.querySelector('iframe');
+  var wv = document.querySelector('webview');
 
   menu.append(new gui.MenuItem({
     label: "Cut",
     click: function() {
-      iframe.contentWindow.document.execCommand("cut");
+      wv.contentWindow.document.execCommand("cut");
     }
   }));
   menu.append(new gui.MenuItem({
     label: "Copy",
     click: function() {
-      iframe.contentWindow.document.execCommand("copy");
+      wv.contentWindow.document.execCommand("copy");
     }
   }));
   menu.append(new gui.MenuItem({
     label: "Paste",
     click: function() {
-      iframe.contentWindow.document.execCommand("paste");
+      wv.contentWindow.document.execCommand("paste");
     }
   }));
 
@@ -51,13 +51,9 @@
   };
 
   var init = function() {
-    if (iframe &&
-        iframe.contentWindow &&
-        iframe.contentWindow.document &&
-        iframe.contentWindow.document.body &&
-        iframe.contentWindow.document.body.innerHTML) {
-      iframe.contentWindow.document.body.addEventListener('click', handleClick, false);
-      iframe.contentWindow.document.body.addEventListener("contextmenu", function(e) {
+    if (wv) {
+      wv.addEventListener('click', handleClick, false);
+      wv.addEventListener("contextmenu", function(e) {
         e.preventDefault();
         menu.popup(e.x, e.y);
       });
