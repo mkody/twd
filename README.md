@@ -40,6 +40,12 @@ $ twd
 
 A `.desktop` file (for graphical menus) is also provided.
 
+## custom css
+
+You might want to use custom CSS files. Create a custom.css file at the root of this project, add your CSS and run/build from source.
+
+For custom fonts, they might be installed first locally.
+
 ## legal
 
 TweetDeck, Twitter, and the TweetDeck logo are trademarks

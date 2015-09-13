@@ -1,6 +1,6 @@
 {
   "name": "twd",
-  "version": "1.4",
+  "version": "1.4.0",
   "description": "(Browser-)Chrome-less TweetDeck",
   "keywords": [
     "node-webkit",
@@ -55,5 +55,8 @@
     "position": "centre",
     "height": 700,
     "width": 900
+  },
+  "webkit": {
+    "plugin": true
   }
 }

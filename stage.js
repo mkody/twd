@@ -22,37 +22,16 @@
     }
   }));
 
-  var handleClick = function(e) {
-    var checkForLink = function(el) {
-      var openLink = function(url) {
-        gui.Shell.openExternal(url);
-        e.preventDefault();
-      };
-
-      if (el.nodeName.toLowerCase() === 'a') {
-        var href = el.getAttribute('href');
-        if (href !== null) {
-          var middleButton = e.which === 2;
-          if (middleButton ||
-              (el.target === '_blank' &&
-               el.rel !== 'user' &&
-               el.rel !== 'mediaPreview')) {
-            openLink(href);
-          }
-
-          console.log(href, middleButton, el.target, el.rel);
-        }
-      } else if ((p = el.parentElement) !== null) {
-        checkForLink(p);
-      }
-    };
-
-    checkForLink(e.target);
-  };
+  wv.addEventListener("loadcommit", function(e){
+    wv.insertCSS({file: "custom.css"});
+  });
 
   var init = function() {
     if (wv) {
-      wv.addEventListener('click', handleClick, false);
+      wv.addEventListener('newwindow', function(e) {
+        gui.Shell.openExternal(e.targetUrl);
+      });
+
       wv.addEventListener("contextmenu", function(e) {
         e.preventDefault();
         menu.popup(e.x, e.y);
