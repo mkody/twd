@@ -9,6 +9,6 @@ fi
 
 mkdir -p build
 version=$(grep '"version"' package.json | cut -d\" -f4)
-git ls-files | xargs zip -9 build/twd-$version-all.nw
+git ls-files | xargs zip -9 build/twd-$version-all.nw custom.css
 
 cd releng/arch && ./pack.sh
